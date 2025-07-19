@@ -3319,15 +3319,18 @@
             targetSection.classList.remove("fade-in");
           }, 600);
 
-          // Scroll to the section content with offset for navbar
+          // Scroll to the section content
           setTimeout(() => {
-            const navbarHeight =
-              document.getElementById("mainNavbar").offsetHeight;
-            const sectionTop = targetSection.offsetTop - navbarHeight - 20;
-            window.scrollTo({
-              top: Math.max(0, sectionTop),
-              behavior: "smooth",
-            });
+            if (sectionId === "home-content") {
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            } else {
+              const navbarHeight = document.getElementById("mainNavbar").offsetHeight;
+              const sectionTop = targetSection.offsetTop - navbarHeight - 20;
+              window.scrollTo({
+                top: Math.max(0, sectionTop),
+                behavior: "smooth",
+              });
+            }
           }, 100);
         }
 
