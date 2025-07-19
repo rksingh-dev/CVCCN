@@ -1,0 +1,3485 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      CVCCN 2026 - Computer Vision, Communication, Computing and Nanoelectronics
+    </title>
+
+    <!-- External Libraries -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="CVCCN 2026" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <style>
+      :root {
+        /* Color Palette */
+        --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        --success-gradient: linear-gradient(135deg, #81fbb8 0%, #28c76f 100%);
+        --warning-gradient: linear-gradient(135deg, #ffd60a 0%, #ff8500 100%);
+
+        --primary-color: #667eea;
+        --secondary-color: #764ba2;
+        --accent-color: #4facfe;
+        --success-color: #28c76f;
+        --warning-color: #ff8500;
+        --danger-color: #f5576c;
+
+        --text-primary: #2c3e50;
+        --text-secondary: #5a6c7d;
+        --text-muted: #8fa4b1;
+        --text-white: #ffffff;
+
+        --bg-primary: #ffffff;
+        --bg-secondary: #f8fafc;
+        --bg-tertiary: #e2e8f0;
+
+        /* Shadows */
+        --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.06);
+        --shadow-md: 0 8px 25px rgba(0, 0, 0, 0.1);
+        --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.1);
+        --shadow-xl: 0 25px 50px rgba(0, 0, 0, 0.15);
+
+        /* Border Radius */
+        --radius-sm: 8px;
+        --radius-md: 12px;
+        --radius-lg: 16px;
+        --radius-xl: 24px;
+
+        /* Spacing */
+        --spacing-xs: 0.5rem;
+        --spacing-sm: 1rem;
+        --spacing-md: 1.5rem;
+        --spacing-lg: 2rem;
+        --spacing-xl: 3rem;
+        --spacing-2xl: 4rem;
+
+        /* Transitions */
+        --transition-fast: all 0.15s ease;
+        --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        --transition-spring: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+        /* Typography */
+        --font-primary: "Inter", sans-serif;
+        --font-display: "Space Grotesk", sans-serif;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 80px;
+      }
+
+      body {
+        font-family: var(--font-primary);
+        line-height: 1.6;
+        color: var(--text-primary);
+        background-color: var(--bg-primary);
+        overflow-x: hidden;
+      }
+
+      /* Utility Classes */
+      .gradient-text {
+        background: var(--primary-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .btn-gradient-primary {
+        background: var(--primary-gradient);
+        border: none;
+        color: white;
+        font-weight: 600;
+        padding: 12px 28px;
+        border-radius: var(--radius-md);
+        transition: var(--transition-smooth);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn-gradient-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+        color: white;
+      }
+
+      .btn-gradient-primary::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+        opacity: 0;
+        transition: var(--transition-smooth);
+      }
+
+      .btn-gradient-primary:hover::before {
+        opacity: 1;
+      }
+
+      .btn-gradient-primary span {
+        position: relative;
+        z-index: 1;
+      }
+
+      .btn-gradient-secondary {
+        background: var(--secondary-gradient);
+        border: none;
+        color: white;
+        font-weight: 600;
+        padding: 12px 28px;
+        border-radius: var(--radius-md);
+        transition: var(--transition-smooth);
+      }
+
+      .btn-gradient-secondary:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+        color: white;
+      }
+
+      .card-modern {
+        background: var(--bg-primary);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-md);
+        border: none;
+        transition: var(--transition-smooth);
+        overflow: hidden;
+      }
+
+      .card-modern:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--shadow-xl);
+      }
+
+      .section-title {
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: 2.5rem;
+        text-align: center;
+        margin-bottom: var(--spacing-xl);
+        position: relative;
+      }
+
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 4px;
+        background: var(--accent-gradient);
+        border-radius: 2px;
+      }
+
+      /* Header Styles */
+      .header-banner {
+        position: relative;
+        background: var(--bg-secondary);
+        padding: 0;
+        overflow: hidden;
+      }
+
+      .header-banner::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(102, 126, 234, 0.1) 0%,
+          rgba(118, 75, 162, 0.1) 100%
+        );
+        z-index: 1;
+      }
+
+      .header-image {
+        width: 100%;
+        height: auto;
+        display: block;
+        position: relative;
+        z-index: 0;
+      }
+
+      /* Navigation Styles */
+      .navbar-modern {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(102, 126, 234, 0.1);
+        padding: var(--spacing-sm) 0;
+        transition: var(--transition-smooth);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      .navbar-scrolled {
+        background: rgba(255, 255, 255, 0.98);
+        box-shadow: var(--shadow-md);
+        padding: calc(var(--spacing-sm) * 0.7) 0;
+      }
+
+      .navbar-brand-modern {
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: 1.8rem;
+        background: var(--primary-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-decoration: none;
+        transition: var(--transition-smooth);
+      }
+
+      .navbar-brand-modern:hover {
+        transform: scale(1.05);
+        text-decoration: none;
+      }
+
+      .nav-link-modern {
+        font-weight: 500;
+        color: var(--text-primary);
+        padding: var(--spacing-xs) var(--spacing-sm);
+        margin: 0 var(--spacing-xs);
+        border-radius: var(--radius-sm);
+        transition: var(--transition-smooth);
+        position: relative;
+        text-decoration: none;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .nav-link-modern::before {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background: var(--accent-gradient);
+        transition: var(--transition-smooth);
+        transform: translateX(-50%);
+        border-radius: 1px;
+      }
+
+      .nav-link-modern:hover {
+        color: var(--primary-color);
+        background: rgba(102, 126, 234, 0.1);
+        text-decoration: none;
+        transform: translateY(-1px);
+      }
+
+      .nav-link-modern:hover::before {
+        width: 85%;
+      }
+
+      /* Hero Section */
+      .hero-carousel {
+        position: relative;
+        border-radius: var(--radius-xl);
+        overflow: hidden;
+        margin: var(--spacing-xl) 0;
+        box-shadow: var(--shadow-xl);
+      }
+
+      .carousel-item img {
+        width: 100%;
+        height: 500px;
+        object-fit: cover;
+        transition: var(--transition-smooth);
+      }
+
+      .carousel:hover .carousel-item img {
+        transform: scale(1.02);
+      }
+
+      .brochure-btn-container {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        z-index: 10;
+      }
+
+      .carousel-indicators {
+        bottom: 20px;
+      }
+
+      .carousel-indicators [data-bs-target] {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        margin: 0 6px;
+        border: 2px solid rgba(255, 255, 255, 0.5);
+        background: transparent;
+        transition: var(--transition-smooth);
+      }
+
+      .carousel-indicators .active {
+        background: white;
+        transform: scale(1.2);
+      }
+
+      /* Marquee */
+      .marquee-modern {
+        background: var(--accent-gradient);
+        color: white;
+        padding: var(--spacing-md) 0;
+        margin: var(--spacing-xl) 0;
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        position: relative;
+      }
+
+      .marquee-content {
+        white-space: nowrap;
+        overflow: hidden;
+      }
+
+      .marquee-text {
+        display: inline-block;
+        animation: marquee 25s linear infinite;
+        font-weight: 600;
+        font-size: 1.1rem;
+      }
+
+      .marquee-text a {
+        color: white;
+        text-decoration: none;
+        transition: var(--transition-smooth);
+      }
+
+      .marquee-text a:hover {
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+      }
+
+      @keyframes marquee {
+        0% {
+          transform: translateX(100%);
+        }
+        100% {
+          transform: translateX(-100%);
+        }
+      }
+
+      /* Content Sections */
+      .content-section {
+        background: var(--bg-primary);
+        border-radius: var(--radius-lg);
+        padding: var(--spacing-2xl);
+        margin-bottom: var(--spacing-xl);
+        box-shadow: var(--shadow-md);
+        transition: var(--transition-smooth);
+        border: 1px solid rgba(102, 126, 234, 0.1);
+      }
+
+      .content-section:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-xl);
+      }
+
+      .content-title {
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: 2rem;
+        margin-bottom: var(--spacing-lg);
+        background: var(--primary-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .content-text {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: var(--text-secondary);
+        text-align: justify;
+      }
+
+      /* Sponsor Grid */
+      .sponsor-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: var(--spacing-lg);
+        margin-top: var(--spacing-xl);
+      }
+
+      .sponsor-item {
+        background: var(--bg-primary);
+        padding: var(--spacing-lg);
+        border-radius: var(--radius-md);
+        box-shadow: var(--shadow-sm);
+        transition: var(--transition-smooth);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .sponsor-item:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-md);
+      }
+
+      .sponsor-item img {
+        max-width: 100%;
+        max-height: 80px;
+        object-fit: contain;
+        filter: grayscale(0%);
+        transition: var(--transition-smooth);
+      }
+
+      .sponsor-item:hover img {
+        filter: grayscale(0%);
+        transform: scale(1.05);
+      }
+
+      /* Sidebar Styles */
+      .sidebar-card {
+        background: var(--bg-primary);
+        border-radius: var(--radius-lg);
+        padding: var(--spacing-lg);
+        margin-bottom: var(--spacing-lg);
+        box-shadow: var(--shadow-md);
+        border: 1px solid rgba(102, 126, 234, 0.1);
+        transition: var(--transition-smooth);
+      }
+
+      .sidebar-card:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .sidebar-title {
+        font-family: var(--font-display);
+        font-weight: 600;
+        font-size: 1.3rem;
+        margin-bottom: var(--spacing-md);
+        text-align: center;
+        background: var(--primary-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      /* Tables */
+      .table-modern {
+        border-radius: var(--radius-md);
+        overflow: hidden;
+        box-shadow: var(--shadow-sm);
+        border: none;
+      }
+
+      .table-modern thead {
+        background: var(--primary-gradient);
+        color: white;
+      }
+
+      .table-modern th {
+        font-weight: 600;
+        padding: var(--spacing-md);
+        border: none;
+      }
+
+      .table-modern td {
+        padding: var(--spacing-md);
+        vertical-align: middle;
+        border-color: rgba(102, 126, 234, 0.1);
+      }
+
+      .table-modern tbody tr {
+        transition: var(--transition-fast);
+      }
+
+      .table-modern tbody tr:hover {
+        background: rgba(102, 126, 234, 0.05);
+      }
+
+      /* Countdown */
+      .countdown-number {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--danger-color);
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+      }
+
+      /* Speaker Cards */
+      .speaker-card {
+        background: var(--bg-primary);
+        border-radius: var(--radius-lg);
+        padding: var(--spacing-xl);
+        margin-bottom: var(--spacing-xl);
+        box-shadow: var(--shadow-md);
+        transition: var(--transition-smooth);
+        border: 1px solid rgba(102, 126, 234, 0.1);
+      }
+
+      .speaker-card:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--shadow-xl);
+      }
+
+      .speaker-details h3 {
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: 1.5rem;
+        margin-bottom: var(--spacing-sm);
+        background: var(--primary-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .speaker-image img {
+        border-radius: var(--radius-md);
+        box-shadow: var(--shadow-md);
+        transition: var(--transition-smooth);
+        border: 3px solid transparent;
+        background: var(--primary-gradient);
+        background-clip: padding-box;
+      }
+
+      .speaker-image img:hover {
+        transform: scale(1.05);
+      }
+
+      /* Registration Table */
+      .registration-table {
+        border-radius: var(--radius-md);
+        overflow: hidden;
+        box-shadow: var(--shadow-md);
+      }
+
+      .registration-table th {
+        background: var(--primary-gradient);
+        color: white;
+        font-weight: 600;
+        padding: var(--spacing-md);
+        border: none;
+      }
+
+      .registration-table td {
+        padding: var(--spacing-md);
+        border-color: rgba(102, 126, 234, 0.1);
+      }
+
+      /* Footer */
+      .footer-modern {
+        background: linear-gradient(
+          135deg,
+          var(--text-primary) 0%,
+          var(--text-secondary) 100%
+        );
+        color: white;
+        padding: var(--spacing-2xl) 0 var(--spacing-xl);
+        margin-top: var(--spacing-2xl);
+      }
+
+      .footer-section h5 {
+        font-family: var(--font-display);
+        font-weight: 600;
+        margin-bottom: var(--spacing-md);
+        color: white;
+      }
+
+      .footer-section a {
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+        transition: var(--transition-smooth);
+      }
+
+      .footer-section a:hover {
+        color: white;
+        text-decoration: underline;
+      }
+
+      /* Alert Styles */
+      .alert-modern {
+        border-radius: var(--radius-md);
+        border: none;
+        padding: var(--spacing-lg);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .alert-info-modern {
+        background: linear-gradient(
+          135deg,
+          rgba(79, 172, 254, 0.1) 0%,
+          rgba(0, 242, 254, 0.1) 100%
+        );
+        border-left: 4px solid var(--accent-color);
+      }
+
+      .alert-warning-modern {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 214, 10, 0.1) 0%,
+          rgba(255, 133, 0, 0.1) 100%
+        );
+        border-left: 4px solid var(--warning-color);
+      }
+
+      /* Responsive Design */
+      @media (max-width: 992px) {
+        .section-title {
+          font-size: 2rem;
+        }
+
+        .content-section {
+          padding: var(--spacing-lg);
+        }
+
+        .speaker-card {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .speaker-details {
+          margin-right: 0;
+          margin-bottom: var(--spacing-lg);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .section-title {
+          font-size: 1.8rem;
+        }
+
+        .navbar-brand-modern {
+          font-size: 1.5rem;
+        }
+
+        .carousel-item img {
+          height: 300px;
+        }
+
+        .brochure-btn-container {
+          top: 15px;
+          right: 15px;
+        }
+
+        .content-section {
+          padding: var(--spacing-md);
+        }
+
+        .sponsor-grid {
+          grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+          gap: var(--spacing-md);
+        }
+      }
+
+      /* Page Content Visibility */
+      .page-content {
+        display: none;
+      }
+
+      .page-content.active {
+        display: block;
+      }
+
+      /* Loading Animation */
+      .fade-in {
+        animation: fadeIn 0.6s ease-in;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Scroll to Top Button */
+      .scroll-to-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        background: var(--primary-gradient);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: var(--shadow-lg);
+        transition: var(--transition-smooth);
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      .scroll-to-top.visible {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .scroll-to-top:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-xl);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="header-banner">
+        <img
+          src="headerieee.png"
+          alt="CVCCN 2026 Header"
+          class="header-image"
+        />
+      </div>
+
+      <!-- Navigation -->
+      <nav class="navbar navbar-expand-lg navbar-modern" id="mainNavbar">
+        <div class="container-fluid">
+          <a
+            class="navbar-brand navbar-brand-modern"
+            href="#home-content"
+            onclick="showSection('home-content')"
+            >CVCCN 2026</a
+          >
+
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto">
+              <li class="nav-item">
+                <a
+                  class="nav-link nav-link-modern"
+                  href="#home-content"
+                  onclick="showSection('home-content')"
+                  >Home</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link nav-link-modern"
+                  href="#committees-content"
+                  onclick="showSection('committees-content')"
+                  >Committees</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link nav-link-modern"
+                  href="#call-for-papers-content"
+                  onclick="showSection('call-for-papers-content')"
+                  >Call for Papers</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link nav-link-modern"
+                  href="#keynote-speakers-content"
+                  onclick="showSection('keynote-speakers-content')"
+                  >Keynote Speakers</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link nav-link-modern"
+                  href="#program-schedule-content"
+                  onclick="showSection('program-schedule-content')"
+                  >Program Schedule</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link nav-link-modern"
+                  href="#registration-content"
+                  onclick="showSection('registration-content')"
+                  >Registration</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link nav-link-modern"
+                  href="#contact-us-content"
+                  onclick="showSection('contact-us-content')"
+                  >Contact Us</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link nav-link-modern"
+                  href="#plan-travel-content"
+                  onclick="showSection('plan-travel-content')"
+                  >Plan Travel</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link nav-link-modern"
+                  href="#tourist-attraction-content"
+                  onclick="showSection('tourist-attraction-content')"
+                  >Tourist Attractions</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Hero Carousel -->
+    <div class="container-fluid">
+      <div class="hero-carousel position-relative">
+        <div
+          id="mainCarousel"
+          class="carousel slide carousel-fade"
+          data-bs-ride="carousel"
+          data-bs-interval="4000"
+        >
+          <!-- Brochure Button -->
+          <div class="brochure-btn-container">
+            <a href="./brochure.pdf" class="btn btn-gradient-primary">
+              <span><i class="fas fa-download me-2"></i>Brochure</span>
+            </a>
+          </div>
+
+          <!-- Carousel Indicators -->
+          <div class="carousel-indicators">
+            <button
+              type="button"
+              data-bs-target="#mainCarousel"
+              data-bs-slide-to="0"
+              class="active"
+              aria-current="true"
+              aria-label="Slide 1"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#mainCarousel"
+              data-bs-slide-to="1"
+              aria-label="Slide 2"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#mainCarousel"
+              data-bs-slide-to="2"
+              aria-label="Slide 3"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#mainCarousel"
+              data-bs-slide-to="3"
+              aria-label="Slide 4"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#mainCarousel"
+              data-bs-slide-to="4"
+              aria-label="Slide 5"
+            ></button>
+          </div>
+
+          <!-- Carousel Slides -->
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img
+                src="nitraipur3.jpg"
+                class="d-block w-100"
+                alt="NIT Raipur Campus View"
+              />
+            </div>
+            <div class="carousel-item">
+              <img
+                src="nitraipur4.jpg"
+                class="d-block w-100"
+                alt="NIT Raipur Academic Block"
+              />
+            </div>
+            <div class="carousel-item">
+              <img
+                src="nitraipur2.jpg"
+                class="d-block w-100"
+                alt="NIT Raipur Infrastructure"
+              />
+            </div>
+            <div class="carousel-item">
+              <img
+                src="nitraipur1.jpg"
+                class="d-block w-100"
+                alt="NIT Raipur Campus"
+              />
+            </div>
+            <div class="carousel-item">
+              <img
+                src="nitraipur5.jpg"
+                class="d-block w-100"
+                alt="NIT Raipur Facilities"
+              />
+            </div>
+          </div>
+
+          <!-- Carousel Controls -->
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#mainCarousel"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#mainCarousel"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Marquee -->
+      <div class="marquee-modern">
+        <div class="marquee-content">
+          <div class="marquee-text">
+            <a href="./brochure.pdf"
+              >🔔 Click here for latest Notifications and Conference Updates •
+              Register Now for Early Bird Discounts • Submit Your Papers Before
+              June 1, 2025 •</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container-fluid">
+      <!-- Home Page Content -->
+      <div id="home-content" class="page-content active fade-in">
+        <div class="row mt-4">
+          <!-- Main Content Column -->
+          <div class="col-xl-8 col-md-12">
+            <!-- Technical Sponsors Section -->
+            <section class="content-section">
+              <h2 class="content-title text-center">
+                <i class="fas fa-handshake me-3"></i>Technical Sponsors
+              </h2>
+              <div class="sponsor-grid">
+                <div class="sponsor-item">
+                  <img src="ieeemp.jpg" alt="IEEE MP Section" />
+                </div>
+                <div class="sponsor-item">
+                  <img src="ieeestudent.png" alt="IEEE Student Branch" />
+                </div>
+                <div class="sponsor-item">
+                  <img src="ieeepels.png" alt="IEEE PELS" />
+                </div>
+                <div class="sponsor-item">
+                  <img src="ieeeias.jpg" alt="IEEE IAS" />
+                </div>
+              </div>
+            </section>
+
+            <!-- About the Institution Section -->
+            <div class="content-section">
+              <h2 class="content-title">
+                <i class="fas fa-university me-3"></i>About the Institution
+              </h2>
+              <p class="content-text">
+                National Institute of Technology Raipur (Formerly Government
+                Engineering College Raipur) was established in 1956 and,
+                acquired the status of National Institute of Technology (an
+                Institution of National Importance) on 1st December 2005. The
+                institute is committed to the challenging task of development of
+                technical education by preparing seasoned graduates in highly
+                sophisticated field of engineering and technology. Core values
+                adopted by the Institute as enduring principles are Integrity,
+                Excellence, Transparency and Accountability. At present the
+                institute offers graduate level courses in twelve disciplines,
+                postgraduate in thirteen disciplines and doctorate program in
+                all the advanced and core fields of engineering.
+              </p>
+
+              <h3 class="content-title mt-5">
+                <i class="fas fa-comments me-3"></i>About Conference
+              </h3>
+              <p class="content-text">
+                The International Conference on Computer Vision, Communication,
+                Computing and Nanoelectronics (CVCCN – 2026) aims to bring
+                together students, researchers, academia, and industry
+                practitioners to showcase and exchange the latest fundamental
+                advances in Computer Vision, Communication, Computing and
+                Nanoelectronics for state-of-the-art practices in Electronics
+                Engineering. This theme will invite the participants to discuss
+                various issues and its future direction of various Emerging
+                Technologies and its Industry applications in the field of Deep
+                learning, Multimedia security, IoT, Image processing, VLSI
+                design, Computing, Semiconductor Devices, and Wireless
+                communication.
+              </p>
+
+              <h3 class="content-title mt-5">
+                <i class="fas fa-scope me-3"></i>Scope of the Conference
+              </h3>
+              <p class="content-text">
+                Image Processing, Computer Vision and AI, VLSI and
+                nanoelectronics, Wireless Communication, Computer communication
+                networks, Signal processing, Biomedical signal and image
+                processing, Machine learning for communication and signal
+                processing, RF, Microwave and Antennas.
+              </p>
+
+              <h3 class="content-title mt-5">
+                <i class="fas fa-graduation-cap me-3"></i>About the Department
+              </h3>
+              <p class="content-text">
+                Electronics and Communication Engineering department is one of
+                the significant engineering branches of NIT Raipur and, has been
+                contributing to the institute since the time of inception in
+                1985. The Department aims at imparting the state of the art
+                knowledge and skills to the students, thus, developing them into
+                excellent engineers, entrepreneurs, scientists, and
+                academicians.
+              </p>
+            </div>
+          </div>
+
+          <!-- Sidebar Column -->
+          <div class="col-xl-4 col-md-12">
+            <!-- Countdown Timer -->
+            <div class="sidebar-card">
+              <h4 class="sidebar-title">
+                <i class="fas fa-clock me-2"></i>Countdown to Event
+              </h4>
+              <div class="table-responsive">
+                <table class="table table-modern">
+                  <thead>
+                    <tr>
+                      <th class="text-center">Days</th>
+                      <th class="text-center">Hours</th>
+                      <th class="text-center">Minutes</th>
+                      <th class="text-center">Seconds</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="text-center">
+                        <span class="countdown-number" id="countdown-days"
+                          >--</span
+                        >
+                      </td>
+                      <td class="text-center">
+                        <span class="countdown-number" id="countdown-hours"
+                          >--</span
+                        >
+                      </td>
+                      <td class="text-center">
+                        <span class="countdown-number" id="countdown-minutes"
+                          >--</span
+                        >
+                      </td>
+                      <td class="text-center">
+                        <span class="countdown-number" id="countdown-seconds"
+                          >--</span
+                        >
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Important Dates Section -->
+            <div class="sidebar-card">
+              <h4 class="sidebar-title">
+                <i class="fas fa-calendar-alt me-2"></i>Important Dates
+              </h4>
+              <div class="table-responsive">
+                <table class="table table-modern">
+                  <tbody>
+                    <tr>
+                      <td>
+                        <strong>Starting date of Paper Submission:</strong>
+                      </td>
+                      <td>
+                        <span
+                          style="color: var(--danger-color); font-weight: 600"
+                          >1 April 2025</span
+                        >
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><strong>Deadline for Paper submission:</strong></td>
+                      <td>
+                        <span
+                          style="color: var(--danger-color); font-weight: 600"
+                          >1 June, 2025</span
+                        >
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><strong>Acceptance Notification:</strong></td>
+                      <td>
+                        <span
+                          style="color: var(--danger-color); font-weight: 600"
+                          >15 September 2025</span
+                        >
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><strong>Early bird registration end:</strong></td>
+                      <td>
+                        <span
+                          style="color: var(--danger-color); font-weight: 600"
+                          >15 November 2025</span
+                        >
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><strong>Registration End:</strong></td>
+                      <td>
+                        <span
+                          style="color: var(--danger-color); font-weight: 600"
+                          >30 November 2025</span
+                        >
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><strong>Date of Conference:</strong></td>
+                      <td>
+                        <span
+                          style="color: var(--danger-color); font-weight: 600"
+                          >20-21 January 2026</span
+                        >
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Paper Template Download -->
+            <div class="sidebar-card">
+              <h4 class="sidebar-title">
+                <i class="fas fa-file-download me-2"></i>Paper Template
+              </h4>
+              <div class="d-grid gap-3">
+                <a
+                  href="https://www.ieee.org/content/dam/ieee-org/ieee/web/org/conferences/Conference-template-A4.doc"
+                  class="btn btn-gradient-primary"
+                  target="_blank"
+                >
+                  <span
+                    ><i class="fas fa-download me-2"></i>Download IEEE
+                    Template</span
+                  >
+                </a>
+                <a
+                  href="https://cmt3.research.microsoft.com/CVCCN2026*"
+                  class="btn btn-gradient-secondary"
+                  target="_blank"
+                >
+                  <span
+                    ><i class="fas fa-paper-plane me-2"></i>Submit Your
+                    Paper</span
+                  >
+                </a>
+              </div>
+              <div class="alert alert-info-modern alert-modern mt-3">
+                <i class="fas fa-info-circle me-2"></i>
+                <small
+                  >For any queries regarding paper submission, please contact us
+                  at
+                  <a
+                    href="mailto:cvccn-2026@nitrr.ac.in"
+                    style="color: var(--accent-color)"
+                    >cvccn-2026@nitrr.ac.in</a
+                  ></small
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Us Content -->
+      <div id="contact-us-content" class="page-content">
+        <div class="content-section">
+          <h2 class="section-title">
+            <i class="fas fa-envelope me-3"></i>Contact Organizing Secretaries
+          </h2>
+          <div class="row">
+            <div class="col-md-6 mb-4">
+              <div class="card-modern p-4">
+                <h5 class="gradient-text">
+                  <i class="fas fa-user me-2"></i>Dr. S. Majumder
+                </h5>
+                <p class="mb-2">
+                  <strong>Position:</strong> Assistant Professor, ECE, NIT
+                  Raipur
+                </p>
+                <p class="mb-2">
+                  <i class="fas fa-phone me-2"></i><strong>Contact:</strong> +91
+                  9424200516
+                </p>
+                <p class="mb-0">
+                  <i class="fas fa-envelope me-2"></i><strong>Email:</strong>
+                  <a href="mailto:smajumder.ece@nitrr.ac.in"
+                    >smajumder.ece@nitrr.ac.in</a
+                  >
+                </p>
+              </div>
+            </div>
+            <div class="col-md-6 mb-4">
+              <div class="card-modern p-4">
+                <h5 class="gradient-text">
+                  <i class="fas fa-user me-2"></i>Dr. A. Gupta
+                </h5>
+                <p class="mb-2">
+                  <strong>Position:</strong> Assistant Professor, ECE, NIT
+                  Raipur
+                </p>
+                <p class="mb-2">
+                  <i class="fas fa-phone me-2"></i><strong>Contact:</strong> +91
+                  7587033313
+                </p>
+                <p class="mb-0">
+                  <i class="fas fa-envelope me-2"></i><strong>Email:</strong>
+                  <a href="mailto:agupta.ece@nitrr.ac.in"
+                    >agupta.ece@nitrr.ac.in</a
+                  >
+                </p>
+              </div>
+            </div>
+            <div class="col-md-6 mb-4">
+              <div class="card-modern p-4">
+                <h5 class="gradient-text">
+                  <i class="fas fa-user me-2"></i>Dr. Ashish Kumar
+                </h5>
+                <p class="mb-2">
+                  <strong>Position:</strong> Assistant Professor, ECE, NIT
+                  Raipur
+                </p>
+                <p class="mb-2">
+                  <i class="fas fa-phone me-2"></i><strong>Contact:</strong> +91
+                  9461230731
+                </p>
+                <p class="mb-0">
+                  <i class="fas fa-envelope me-2"></i><strong>Email:</strong>
+                  <a href="mailto:akumar.ece@nitrr.ac.in"
+                    >akumar.ece@nitrr.ac.in</a
+                  >
+                </p>
+              </div>
+            </div>
+            <div class="col-md-6 mb-4">
+              <div class="card-modern p-4">
+                <h5 class="gradient-text">
+                  <i class="fas fa-user me-2"></i>Dr. Mayur V. Katwe
+                </h5>
+                <p class="mb-2">
+                  <strong>Position:</strong> Assistant Professor, ECE, NIT
+                  Raipur
+                </p>
+                <p class="mb-2">
+                  <i class="fas fa-phone me-2"></i><strong>Contact:</strong> +91
+                  9405320412
+                </p>
+                <p class="mb-0">
+                  <i class="fas fa-envelope me-2"></i><strong>Email:</strong>
+                  <a href="mailto:mvkatwe.ece@nitrr.ac.in"
+                    >mvkatwe.ece@nitrr.ac.in</a
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Keynote Speakers Content -->
+      <div id="keynote-speakers-content" class="page-content">
+        <h2 class="section-title">
+          <i class="fas fa-microphone me-3"></i>Keynote Speakers
+        </h2>
+
+        <!-- Dr. Pantelimon Stanica -->
+        <div class="speaker-card">
+          <div class="row align-items-center">
+            <div class="col-lg-8">
+              <div class="speaker-details">
+                <h3>
+                  <i class="fas fa-user-graduate me-2"></i>Dr. Pantelimon
+                  Stanica
+                </h3>
+                <p class="content-text">
+                  Dr. Pantelimon Stanica is a Professor of Applied Mathematics
+                  at the Naval Postgraduate School (NPS), where he has served
+                  since 2006—first as an Associate Professor and, since 2010, as
+                  a full Professor. With a distinguished career spanning
+                  decades, Dr. Stanica is internationally recognized for his
+                  contributions to cryptography, number theory, and
+                  combinatorics. Before joining NPS, Dr. Stanica held multiple
+                  academic positions at Auburn University Montgomery, including
+                  tenured Associate Professor of Mathematics (2003–2006) and
+                  Assistant Professor (1999–2003). He was also honored with the
+                  title of Distinguished Research Professor and served as a
+                  researcher at the Institute of Mathematics, Romanian Academy.
+                  Dr. Stanica's research spans a wide range of mathematical
+                  disciplines, including cryptography and coding theory, Boolean
+                  functions, graph theory, algebra, and discrete mathematics.
+                  His teaching portfolio reflects these interests, as he
+                  regularly instructs courses in number theory, combinatorics,
+                  cryptography, and abstract algebra.
+                </p>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="speaker-image text-center">
+                <img
+                  src="pantelimon.png"
+                  alt="Dr. Pantelimon Stanica"
+                  class="img-fluid"
+                  style="max-width: 200px; max-height: 200px; object-fit: cover"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dr. Miodrag Mihaljević -->
+        <div class="speaker-card">
+          <div class="row align-items-center">
+            <div class="col-lg-8">
+              <div class="speaker-details">
+                <h3>
+                  <i class="fas fa-user-graduate me-2"></i>Dr. Miodrag
+                  Mihaljević
+                </h3>
+                <p class="content-text">
+                  Dr. Miodrag Mihaljević is a distinguished Research Professor
+                  at the Mathematical Institute of the Serbian Academy of
+                  Sciences and Arts (SANU) in Belgrade, Serbia, where he also
+                  serves as Deputy Director and Head of the National Center for
+                  Cyber Security and Privacy. A leading authority in the field
+                  of cryptology, Dr. Mihaljević has dedicated his career to
+                  advancing information security, blockchain technology, and
+                  coding theory. He received his B.S.E.E. degree from the
+                  University of Belgrade in 1979, followed by M.S. and Ph.D.
+                  degrees in 1981 and 1990, respectively. Over his illustrious
+                  career, he has published over 75 research papers in top-tier
+                  international journals, contributed more than 50 conference
+                  presentations, and authored over 50 national publications,
+                  patents, software solutions, and technical reports. His work
+                  has earned over 3000 citations, highlighting his significant
+                  impact in the global research community. Dr. Mihaljević has
+                  been honored with numerous accolades, including the 2013 Award
+                  from the Serbian Academy of Sciences and Arts for a decade of
+                  excellence in cryptology and discrete mathematics.
+                </p>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="speaker-image text-center">
+                <img
+                  src="misamihaljevic.jpg"
+                  alt="Dr. Miodrag Mihaljević"
+                  class="img-fluid"
+                  style="max-width: 200px; max-height: 200px; object-fit: cover"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Continue with other speakers... -->
+        <div class="speaker-card">
+          <div class="row align-items-center">
+            <div class="col-lg-8">
+              <div class="speaker-details">
+                <h3>
+                  <i class="fas fa-user-graduate me-2"></i>Prof. Subhamoy Maitra
+                </h3>
+                <p class="content-text">
+                  Prof. Subhamoy Maitra is a renowned mathematician and
+                  cryptographer from India. He is currently affiliated with the
+                  Indian Statistical Institute (ISI) in Kolkata, a prestigious
+                  research institute in India. His research interests include
+                  cryptography, coding theory, and information security. Prof.
+                  Maitra has published numerous papers in top-tier conferences
+                  and journals in his field and has received several awards for
+                  his contributions to cryptography. He is also a Fellow of the
+                  Indian National Science Academy (INSA) and the National
+                  Academy of Sciences, India (NASI).
+                </p>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="speaker-image text-center">
+                <img
+                  src="subhamoy.gif"
+                  alt="Prof. Subhamoy Maitra"
+                  class="img-fluid"
+                  style="max-width: 200px; max-height: 200px; object-fit: cover"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Continue with remaining speakers following the same pattern... -->
+        <div class="speaker-card">
+          <div class="row align-items-center">
+            <div class="col-lg-8">
+              <div class="speaker-details">
+                <h3>
+                  <i class="fas fa-user-graduate me-2"></i>Dr. Preetam Kumar
+                </h3>
+                <p class="content-text">
+                  Dr. Preetam Kumar is a Professor in the Department of
+                  Electrical Engineering at the Indian Institute of Technology
+                  Patna, where he has been a faculty member since 2009. He
+                  earned his Ph.D. from IIT Kharagpur and brings over two
+                  decades of academic and industry experience in the field of
+                  wireless communications. His research spans across 5G and 6G
+                  communications, physical layer design, signal processing for
+                  communication systems, wideband antenna design, VLSI for
+                  communication, and underwater communications. Prof. Kumar has
+                  supervised several Ph.D. scholars, with many having completed
+                  their research under his guidance. Prior to joining IIT Patna,
+                  he served as a faculty member at BIT Mesra and worked in
+                  industry with GDA Technologies and Galgotia University. He has
+                  played key organizational roles in several major IEEE
+                  conferences, including serving as General Co-Chair of IEEE 5G
+                  Summit Patna and Organizing Co-Chair for NCVPRIPG-2015.
+                </p>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="speaker-image text-center">
+                <img
+                  src="Preetam.jpg"
+                  alt="Dr. Preetam Kumar"
+                  class="img-fluid"
+                  style="max-width: 200px; max-height: 200px; object-fit: cover"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Additional speakers continue... -->
+        <div class="speaker-card">
+          <div class="row align-items-center">
+            <div class="col-lg-8">
+              <div class="speaker-details">
+                <h3>
+                  <i class="fas fa-user-graduate me-2"></i>Dr. Yogesh Singh
+                  Chauhan
+                </h3>
+                <p class="content-text">
+                  Dr. Yogesh Singh Chauhan is a Professor in the Department of
+                  Electrical Engineering at the Indian Institute of Technology
+                  Kanpur. He received his Ph.D. from the École Polytechnique
+                  Fédérale de Lausanne (EPFL), Switzerland, and has established
+                  himself as a leading expert in compact modeling and
+                  nanoelectronics. His research focuses on the compact modeling
+                  of semiconductor devices, including advanced structures such
+                  as Bulk/SOI MOSFETs, multigate FETs, nanowires, and UTB SOI
+                  devices. He also works extensively on SPICE modeling for
+                  high-voltage and power semiconductor devices like LDMOS,
+                  VDMOS, IGBT, and HEMT, and is actively involved with the BSIM
+                  Group at the University of California, Berkeley for BSIM model
+                  development and support. In addition, Prof. Chauhan's
+                  interests extend to atomistic simulation of nanoscale devices,
+                  along with DC, CV, and RF characterization. His contributions
+                  are widely recognized in the semiconductor modeling community
+                  for bridging the gap between theory, simulation, and practical
+                  application in electronic design automation.
+                </p>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="speaker-image text-center">
+                <img
+                  src="chauhan.jpeg"
+                  alt="Dr. Yogesh Singh Chauhan"
+                  class="img-fluid"
+                  style="max-width: 200px; max-height: 200px; object-fit: cover"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- More speakers... -->
+        <div class="speaker-card">
+          <div class="row align-items-center">
+            <div class="col-lg-8">
+              <div class="speaker-details">
+                <h3>
+                  <i class="fas fa-user-graduate me-2"></i>Dr. Akshaya Kumar
+                  Mishra
+                </h3>
+                <p class="content-text">
+                  Dr. Akshaya Kumar Mishra is an Adjunct Assistant Professor in
+                  the Department of Systems Design Engineering at the University
+                  of Waterloo, Canada. He earned his Ph.D. in Pattern Analysis
+                  and Machine Intelligence from the same institution, following
+                  an M.Tech in Automation and Computer Vision from the Indian
+                  Institute of Technology Kharagpur. With over two decades of
+                  experience in image processing, pattern recognition, and
+                  computer vision, Dr. Mishra has contributed to both academia
+                  and industry. His professional journey includes roles at
+                  Read-Ink Technologies, Tornado Medical Systems, and Miovision
+                  Technologies, where he focused on developing machine learning
+                  algorithms for handwriting recognition and optical coherence
+                  tomography (OCT) signal analysis. He also served as a Senior
+                  Research Scientist at Epson Canada.
+                </p>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="speaker-image text-center">
+                <img
+                  src="Akshaya-Mishra.png"
+                  alt="Dr. Akshaya Kumar Mishra"
+                  class="img-fluid"
+                  style="max-width: 200px; max-height: 200px; object-fit: cover"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="speaker-card">
+          <div class="row align-items-center">
+            <div class="col-lg-8">
+              <div class="speaker-details">
+                <h3>
+                  <i class="fas fa-user-graduate me-2"></i>Dr. Sumit Chakravarty
+                </h3>
+                <p class="content-text">
+                  Dr. Sumit Chakravarty is a Professor and Assistant Chair in
+                  the Department of Electrical and Computer Engineering at
+                  Kennesaw State University (KSU), where he also serves as the
+                  coordinator for the Master of Science in Electrical and
+                  Computer Engineering (MSECE) program. He earned his Ph.D. in
+                  Electrical Engineering from the University of Maryland,
+                  Baltimore County, with a dissertation focusing on the analysis
+                  of hyperspectral signatures and data. He also holds a Master
+                  of Science degree in Electrical Engineering from Texas A&M
+                  University–Kingsville. Dr. Chakravarty's research interests
+                  encompass signal processing, remote sensing, medical image
+                  analysis, machine learning, and wireless communications. He
+                  has contributed to various areas, including the application of
+                  computer vision techniques for hyperspectral image analysis,
+                  such as tracking, segmentation, and component decomposition.
+                  His scholarly work has been recognized in the academic
+                  community, with a citation count of 774, an h-index of 14, and
+                  an i10-index of 19.
+                </p>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="speaker-image text-center">
+                <img
+                  src="sumit.png"
+                  alt="Dr. Sumit Chakravarty"
+                  class="img-fluid"
+                  style="max-width: 200px; max-height: 200px; object-fit: cover"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="speaker-card">
+          <div class="row align-items-center">
+            <div class="col-lg-8">
+              <div class="speaker-details">
+                <h3>
+                  <i class="fas fa-user-graduate me-2"></i>Dr. Tan Swee Tiam
+                </h3>
+                <p class="content-text">
+                  Dr. Tan Swee Tiam is an Associate Professor and Assistant Dean
+                  at the School of Energy and Chemical Engineering (SECE) at
+                  Xiamen University Malaysia (XMUM). He also serves as the
+                  Founding Director of the Kelip-kelip! Center of Excellence for
+                  Light Enabling Technologies. He earned both his B.Eng. and
+                  Ph.D. degrees in Electrical and Electronic Engineering from
+                  Nanyang Technological University (NTU), Singapore, in 2003 and
+                  2007, respectively. With over two decades of research
+                  experience in optoelectronic epitaxial materials, devices, and
+                  physics, Dr. Tan has led more than ten large-scale research
+                  projects totaling approximately US$40 million. His work has
+                  resulted in over 115 journal publications, an h-index of 43,
+                  and more than 30 international patents. His research interests
+                  include semiconductor materials and devices, deep ultraviolet
+                  technology, spectra-enhanced light-emitting diodes,
+                  energy-efficient devices and systems, and energy harvesting
+                  and storage.
+                </p>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="speaker-image text-center">
+                <img
+                  src="swee tiam.jpeg"
+                  alt="Dr. Tan Swee Tiam"
+                  class="img-fluid"
+                  style="max-width: 200px; max-height: 200px; object-fit: cover"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Registration Content -->
+      <div id="registration-content" class="page-content">
+        <h2 class="section-title">
+          <i class="fas fa-user-plus me-3"></i>Registration Details
+        </h2>
+
+        <div class="content-section">
+          <div class="alert alert-info-modern alert-modern">
+            <h4 style="color: var(--primary-color); font-weight: 600">
+              <i class="fas fa-info-circle me-2"></i>Registration Guidelines
+            </h4>
+            <ul class="mb-0">
+              <li>
+                It is mandatory for at least one author of an accepted paper for
+                the paper to appear in the proceeding.
+              </li>
+              <li>
+                Co-authors must register by paying full registration fees in
+                case they want to attend and get presentation certificate as a
+                conference delegate.
+              </li>
+              <li>
+                Registration fee is non-refundable under any circumstances.
+              </li>
+              <li>
+                In the case of offline participation, the delegate needs to make
+                arrangements for the stay on their own.
+              </li>
+              <li>
+                One single Registration includes presenting one accepted paper.
+              </li>
+            </ul>
+          </div>
+
+          <div class="alert alert-warning-modern alert-modern mt-4">
+            <h4 style="color: var(--warning-color); font-weight: 600">
+              <i class="fas fa-exclamation-triangle me-2"></i>Instructions to
+              Participants
+            </h4>
+            <ul class="mb-0">
+              <li>
+                The sample paper template is made available on the conference
+                website in Download menu.
+              </li>
+              <li>
+                The number of pages in the paper should not exceed six. Papers
+                submitted in the format other than IEEE will not be considered
+                for the conference.
+              </li>
+              <li>
+                The authors of the accepted papers will be invited for an oral
+                presentation in the conference. All the registered and presented
+                papers in the conference will only be submitted to IEEE for
+                their inclusion into IEEE Xplore which is Scopus indexed
+                provided they meet the IEEE guidelines.
+              </li>
+              <li>
+                The eligible selected papers will be further reviewed for a
+                possible publication in the IEEE Transaction on Industry
+                Applications or IEEE IAS Magazine.
+              </li>
+              <li>
+                Accommodation will be provided only to the registered students
+                for 20-21 January.
+              </li>
+              <li>
+                Details of the online and offline mode of presentation will be
+                made available in the CVCCN 2026 conference website in program
+                schedule.
+              </li>
+            </ul>
+          </div>
+
+          <div class="card-modern p-4 mt-4 text-center">
+            <h4 class="gradient-text mb-3">
+              <i class="fas fa-university me-2"></i>Payment Details
+            </h4>
+            <p>
+              <strong
+                >Registration fee is payable by Any Online Mode in favour of
+                account of</strong
+              >
+            </p>
+            <p style="color: var(--danger-color); font-weight: 600">
+              "Director, NIT Raipur"
+            </p>
+            <div class="row">
+              <div class="col-md-6">
+                <p>
+                  <strong>A/C No.:</strong>
+                  <span style="color: var(--danger-color); font-weight: 600"
+                    >30042955244</span
+                  >
+                </p>
+              </div>
+              <div class="col-md-6">
+                <p>
+                  <strong>IFSC Code:</strong>
+                  <span style="color: var(--danger-color); font-weight: 600"
+                    >SBIN0002852</span
+                  >
+                </p>
+              </div>
+            </div>
+            <p>
+              <strong>Branch:</strong>
+              <span style="color: var(--danger-color); font-weight: 600"
+                >GCET Branch, Raipur (C.G).</span
+              >
+            </p>
+          </div>
+
+          <div class="table-responsive mt-4">
+            <table class="table registration-table">
+              <thead>
+                <tr>
+                  <th colspan="4" class="text-center">
+                    Registration Fees per Paper per Author
+                  </th>
+                </tr>
+                <tr>
+                  <th>Registration Type</th>
+                  <th>Category</th>
+                  <th>Indian (INR)</th>
+                  <th>Foreign (USD)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td rowspan="2">
+                    <strong>Early bird registration</strong><br />(Last date:
+                    15-Nov-25)
+                  </td>
+                  <td>Research scholars / Students</td>
+                  <td>₹9,000 + GST@18%</td>
+                  <td>$150 + GST@18%</td>
+                </tr>
+                <tr>
+                  <td>Faculty / Scientists / Industry</td>
+                  <td>₹10,000 + GST@18%</td>
+                  <td>$200 + GST@18%</td>
+                </tr>
+                <tr>
+                  <td rowspan="2">
+                    <strong>General registration</strong><br />(Last date:
+                    30-Nov-25)
+                  </td>
+                  <td>Research scholars / Students</td>
+                  <td>₹10,000 + GST@18%</td>
+                  <td>$200 + GST@18%</td>
+                </tr>
+                <tr>
+                  <td>Faculty / Scientists / Industry</td>
+                  <td>₹11,000 + GST@18%</td>
+                  <td>$250 + GST@18%</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="mt-4">
+            <p style="color: var(--danger-color); font-weight: 600">
+              <em><i class="fas fa-sticky-note me-2"></i>Note:</em>
+            </p>
+            <ul>
+              <li>
+                To be paid by the first author/ corresponding author after the
+                manuscript acceptance.
+              </li>
+              <li>
+                No registration after 30<sup>th</sup> November, 2025 shall be
+                entertained.
+              </li>
+              <li>
+                The registration fees include conference certificate and
+                publication indexing site.
+              </li>
+            </ul>
+
+            <div class="card-modern p-4 mt-4">
+              <h5 class="gradient-text text-center mb-3">
+                <i class="fas fa-book me-2"></i>Publication Platforms
+              </h5>
+              <p class="text-center">
+                Selected and presented papers will be published as conference
+                proceeding and will be indexed in one of the following (but not
+                limited to) platforms:
+              </p>
+              <div class="row text-center mt-3">
+                <div class="col-md-6 col-lg-4 mb-3">
+                  <span class="badge bg-primary p-3 fs-6">IEEE Xplore</span>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-3">
+                  <span class="badge bg-success p-3 fs-6">Springer</span>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-3">
+                  <span class="badge bg-info p-3 fs-6">Taylor & Francis</span>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-3">
+                  <span class="badge bg-warning p-3 fs-6">Elsevier</span>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-3">
+                  <span class="badge bg-danger p-3 fs-6">IOP</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Committees Content -->
+      <div id="committees-content" class="page-content">
+        <h2 class="section-title">
+          <i class="fas fa-users me-3"></i>Conference Committees
+        </h2>
+
+        <div class="row">
+          <div class="col-xl-8 col-md-12">
+            <!-- Advisory Committee -->
+            <div class="content-section">
+              <h3 class="content-title">
+                <i class="fas fa-user-tie me-3"></i>Advisory Board Members
+              </h3>
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <div class="card-modern p-3">
+                    <h6 class="gradient-text mb-1">Prof. Pantelimon Stanica</h6>
+                    <small class="text-muted"
+                      >Naval Postgraduate School, USA</small
+                    >
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <div class="card-modern p-3">
+                    <h6 class="gradient-text mb-1">Prof. Miodrag Mihaljević</h6>
+                    <small class="text-muted"
+                      >Serbian Academy of Sciences and Arts, Serbia</small
+                    >
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <div class="card-modern p-3">
+                    <h6 class="gradient-text mb-1">Prof. Subhamoy Maitra</h6>
+                    <small class="text-muted"
+                      >Indian Statistical Institute, Kolkata</small
+                    >
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <div class="card-modern p-3">
+                    <h6 class="gradient-text mb-1">Prof. Yogesh Chauhan</h6>
+                    <small class="text-muted"
+                      >Indian Institute of Technology Kanpur</small
+                    >
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <div class="card-modern p-3">
+                    <h6 class="gradient-text mb-1">Prof. Preetam Kumar</h6>
+                    <small class="text-muted"
+                      >Indian Institute of Technology Patna</small
+                    >
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <div class="card-modern p-3">
+                    <h6 class="gradient-text mb-1">Dr. Akshya Mishra</h6>
+                    <small class="text-muted"
+                      >University of Waterloo, Canada</small
+                    >
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <div class="card-modern p-3">
+                    <h6 class="gradient-text mb-1">Dr. Sumit Chakravarty</h6>
+                    <small class="text-muted"
+                      >Kennesaw State University, USA</small
+                    >
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <div class="card-modern p-3">
+                    <h6 class="gradient-text mb-1">Dr. Tan Swee Tiam</h6>
+                    <small class="text-muted"
+                      >Xiamen University, Malaysia</small
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Organizing Committee -->
+            <div class="content-section">
+              <h3 class="content-title">
+                <i class="fas fa-clipboard-list me-3"></i>Organizing Committee
+              </h3>
+
+              <div class="card-modern p-4 mb-4">
+                <h5 class="gradient-text mb-3">
+                  <i class="fas fa-crown me-2"></i>Chief Patron
+                </h5>
+                <p class="mb-0">
+                  <strong>Prof. N.V Ramana Rao</strong>,
+                  <em>Director, NIT Raipur</em>
+                </p>
+              </div>
+
+              <div class="card-modern p-4 mb-4">
+                <h5 class="gradient-text mb-3">
+                  <i class="fas fa-handshake me-2"></i>Patron(s)
+                </h5>
+                <p class="mb-2">
+                  <strong>Dr. Prof. G. P. S. C. Mishra</strong>,
+                  <em>Dean(R&C), NIT Raipur</em>
+                </p>
+                <p class="mb-0">
+                  <strong>Dr. Shrish Verma</strong>,
+                  <em>Dean (Academics), NIT Raipur</em>
+                </p>
+              </div>
+
+              <div class="card-modern p-4 mb-4">
+                <h5 class="gradient-text mb-3">
+                  <i class="fas fa-user-cog me-2"></i>Chairman
+                </h5>
+                <p class="mb-0">
+                  <strong>Dr. Toshanlal Meenpal</strong>,
+                  <em>Associate Prof., ECE, NIT Raipur</em>
+                </p>
+              </div>
+
+              <div class="card-modern p-4 mb-4">
+                <h5 class="gradient-text mb-3">
+                  <i class="fas fa-tasks me-2"></i>Organizing Secretary /
+                  Coordinators
+                </h5>
+                <p class="mb-2">
+                  <strong>Dr. Saikat Majumder</strong>,
+                  <em>Assistant Prof., ECE, NIT Raipur</em>
+                </p>
+                <p class="mb-2">
+                  <strong>Dr. Anshul Gupta</strong>,
+                  <em>Assistant Prof., ECE, NIT Raipur</em>
+                </p>
+                <p class="mb-2">
+                  <strong>Dr. Ashish Kumar</strong>,
+                  <em>Assistant Prof., ECE, NIT Raipur</em>
+                </p>
+                <p class="mb-0">
+                  <strong>Dr. Mayur V. Katwe</strong>,
+                  <em>Assistant Prof. ECE, NIT Raipur</em>
+                </p>
+              </div>
+            </div>
+
+            <!-- Technical Committee -->
+            <div class="content-section">
+              <h3 class="content-title">
+                <i class="fas fa-cogs me-3"></i>Technical Program Committee
+              </h3>
+              <div class="row">
+                <div class="col-md-6 mb-2">
+                  <div class="card-modern p-3">
+                    <h6 class="gradient-text mb-1">Dr. B. Acharya</h6>
+                    <small class="text-muted">NIT Raipur</small>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-2">
+                  <div class="card-modern p-3">
+                    <h6 class="gradient-text mb-1">Dr. A. S. Raghuvanshi</h6>
+                    <small class="text-muted">NIT Raipur</small>
+                  </div>
+                </div>
+                <!-- Continue with remaining committee members... -->
+                <div class="col-md-6 mb-2">
+                  <div class="card-modern p-3">
+                    <h6 class="gradient-text mb-1">Dr. B. Patnaik</h6>
+                    <small class="text-muted">NIT Raipur</small>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-2">
+                  <div class="card-modern p-3">
+                    <h6 class="gradient-text mb-1">Dr. C. Sahu</h6>
+                    <small class="text-muted">NIT Raipur</small>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-2">
+                  <div class="card-modern p-3">
+                    <h6 class="gradient-text mb-1">Dr. S. Deshmukh</h6>
+                    <small class="text-muted">NIT Raipur</small>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-2">
+                  <div class="card-modern p-3">
+                    <h6 class="gradient-text mb-1">Dr. S. K. Saha</h6>
+                    <small class="text-muted">NIT Raipur</small>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-2">
+                  <div class="card-modern p-3">
+                    <h6 class="gradient-text mb-1">Dr. A. Naugarhiya</h6>
+                    <small class="text-muted">NIT Raipur</small>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-2">
+                  <div class="card-modern p-3">
+                    <h6 class="gradient-text mb-1">Dr. K. K. Nigam</h6>
+                    <small class="text-muted">NIT Raipur</small>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-2">
+                  <div class="card-modern p-3">
+                    <h6 class="gradient-text mb-1">Mr. S. Chakrabarty</h6>
+                    <small class="text-muted">NIT Raipur</small>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-2">
+                  <div class="card-modern p-3">
+                    <h6 class="gradient-text mb-1">Dr. D. Muchahary</h6>
+                    <small class="text-muted">NIT Raipur</small>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-2">
+                  <div class="card-modern p-3">
+                    <h6 class="gradient-text mb-1">Dr. S. Tirkey</h6>
+                    <small class="text-muted">NIT Raipur</small>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-2">
+                  <div class="card-modern p-3">
+                    <h6 class="gradient-text mb-1">Dr. Vijayshri Chaurasia</h6>
+                    <small class="text-muted">MANIT Bhopal</small>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-2">
+                  <div class="card-modern p-3">
+                    <h6 class="gradient-text mb-1">Dr. Md. Farukh Hashmi</h6>
+                    <small class="text-muted">NIT Warangal</small>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-2">
+                  <div class="card-modern p-3">
+                    <h6 class="gradient-text mb-1">Dr. Vishal Satpute</h6>
+                    <small class="text-muted">VNIT Nagpur</small>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-2">
+                  <div class="card-modern p-3">
+                    <h6 class="gradient-text mb-1">Dr. Madhusudhan Mishra</h6>
+                    <small class="text-muted">NERIST</small>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-2">
+                  <div class="card-modern p-3">
+                    <h6 class="gradient-text mb-1">Dr. Shrivishal Tripathi</h6>
+                    <small class="text-muted">IIIT NR</small>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-2">
+                  <div class="card-modern p-3">
+                    <h6 class="gradient-text mb-1">Dr. Manish Kashyap</h6>
+                    <small class="text-muted">MANIT Bhopal</small>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-2">
+                  <div class="card-modern p-3">
+                    <h6 class="gradient-text mb-1">Dr. Kuldeep Singh</h6>
+                    <small class="text-muted">MNIT Jaipur</small>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-2">
+                  <div class="card-modern p-3">
+                    <h6 class="gradient-text mb-1">Dr. Anjali Potnis</h6>
+                    <small class="text-muted">NITTTR Bhopal</small>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-2">
+                  <div class="card-modern p-3">
+                    <h6 class="gradient-text mb-1">Dr. Nikhildeep Gupta</h6>
+                    <small class="text-muted">VNIT Nagpur</small>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-2">
+                  <div class="card-modern p-3">
+                    <h6 class="gradient-text mb-1">Dr. Anand Sharma</h6>
+                    <small class="text-muted">MNNIT Allahabad</small>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-2">
+                  <div class="card-modern p-3">
+                    <h6 class="gradient-text mb-1">Dr. Situ Rani Patre</h6>
+                    <small class="text-muted">NIT Rourkela</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sidebar Column -->
+          <div class="col-xl-4 col-md-12">
+            <!-- Important Dates Section -->
+            <div class="sidebar-card">
+              <h4 class="sidebar-title">
+                <i class="fas fa-calendar-alt me-2"></i>Important Dates
+              </h4>
+              <div class="table-responsive">
+                <table class="table table-modern">
+                  <tbody>
+                    <tr>
+                      <td><strong>Paper Submission Start:</strong></td>
+                      <td>
+                        <span
+                          style="color: var(--danger-color); font-weight: 600"
+                          >1 April 2025</span
+                        >
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><strong>Paper Submission Deadline:</strong></td>
+                      <td>
+                        <span
+                          style="color: var(--danger-color); font-weight: 600"
+                          >1 June, 2025</span
+                        >
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><strong>Acceptance Notification:</strong></td>
+                      <td>
+                        <span
+                          style="color: var(--danger-color); font-weight: 600"
+                          >15 September 2025</span
+                        >
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><strong>Early bird registration end:</strong></td>
+                      <td>
+                        <span
+                          style="color: var(--danger-color); font-weight: 600"
+                          >15 November 2025</span
+                        >
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><strong>Registration End:</strong></td>
+                      <td>
+                        <span
+                          style="color: var(--danger-color); font-weight: 600"
+                          >30 November 2025</span
+                        >
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><strong>Conference Date:</strong></td>
+                      <td>
+                        <span
+                          style="color: var(--danger-color); font-weight: 600"
+                          >20-21 January 2026</span
+                        >
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Paper Template Download -->
+            <div class="sidebar-card">
+              <h4 class="sidebar-title">
+                <i class="fas fa-file-download me-2"></i>Paper Template
+              </h4>
+              <div class="d-grid gap-3">
+                <a
+                  href="https://www.ieee.org/content/dam/ieee-org/ieee/web/org/conferences/Conference-template-A4.doc"
+                  class="btn btn-gradient-primary"
+                  target="_blank"
+                >
+                  <span
+                    ><i class="fas fa-download me-2"></i>Download IEEE
+                    Template</span
+                  >
+                </a>
+                <a
+                  href="https://cmt3.research.microsoft.com/CVCCN2026*"
+                  class="btn btn-gradient-secondary"
+                  target="_blank"
+                >
+                  <span
+                    ><i class="fas fa-paper-plane me-2"></i>Submit Your
+                    Paper</span
+                  >
+                </a>
+              </div>
+              <div class="alert alert-info-modern alert-modern mt-3">
+                <i class="fas fa-info-circle me-2"></i>
+                <small
+                  >For queries regarding paper submission, contact:
+                  <a
+                    href="mailto:cvccn-2026@nitrr.ac.in"
+                    style="color: var(--accent-color)"
+                    >cvccn-2026@nitrr.ac.in</a
+                  ></small
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Call for Papers Content -->
+      <div id="call-for-papers-content" class="page-content">
+        <h2 class="section-title">
+          <i class="fas fa-file-alt me-3"></i>Call for Papers
+        </h2>
+
+        <div class="row">
+          <div class="col-xl-8 col-md-12">
+            <div class="content-section">
+              <h3 class="content-title">
+                <i class="fas fa-bullseye me-3"></i>Topics for Submission
+              </h3>
+
+              <p class="content-text">
+                Students, Research Scholars, Scientists, Faculties, and
+                Industrial Executives are welcome to submit full-length research
+                papers on the following themes (but not limited to):
+              </p>
+
+              <div class="row mt-4">
+                <div class="col-md-6 mb-3">
+                  <div class="card-modern p-3">
+                    <h6 class="gradient-text">
+                      <i class="fas fa-brain me-2"></i>Signal and Image
+                      Processing Techniques
+                    </h6>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <div class="card-modern p-3">
+                    <h6 class="gradient-text">
+                      <i class="fas fa-robot me-2"></i>Artificial Intelligence
+                      and Machine Learning
+                    </h6>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <div class="card-modern p-3">
+                    <h6 class="gradient-text">
+                      <i class="fas fa-language me-2"></i>Natural Language
+                      Processing
+                    </h6>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <div class="card-modern p-3">
+                    <h6 class="gradient-text">
+                      <i class="fas fa-eye me-2"></i>Computer Vision and AI
+                    </h6>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <div class="card-modern p-3">
+                    <h6 class="gradient-text">
+                      <i class="fas fa-microchip me-2"></i>VLSI and
+                      Nanoelectronics
+                    </h6>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <div class="card-modern p-3">
+                    <h6 class="gradient-text">
+                      <i class="fas fa-lightbulb me-2"></i>Optoelectronic
+                      Materials and Devices
+                    </h6>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <div class="card-modern p-3">
+                    <h6 class="gradient-text">
+                      <i class="fas fa-wifi me-2"></i>Wireless Communication and
+                      Systems
+                    </h6>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <div class="card-modern p-3">
+                    <h6 class="gradient-text">
+                      <i class="fas fa-atom me-2"></i>Quantum Computing and
+                      Communication
+                    </h6>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <div class="card-modern p-3">
+                    <h6 class="gradient-text">
+                      <i class="fas fa-signal me-2"></i>5G and 6G Technologies
+                    </h6>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <div class="card-modern p-3">
+                    <h6 class="gradient-text">
+                      <i class="fas fa-network-wired me-2"></i>Computer Networks
+                      and IoT
+                    </h6>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <div class="card-modern p-3">
+                    <h6 class="gradient-text">
+                      <i class="fas fa-wave-square me-2"></i>DSP Implementation
+                      and Architectures
+                    </h6>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <div class="card-modern p-3">
+                    <h6 class="gradient-text">
+                      <i class="fas fa-broadcast-tower me-2"></i>RF, Microwave
+                      and Antennas
+                    </h6>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <div class="card-modern p-3">
+                    <h6 class="gradient-text">
+                      <i class="fas fa-shield-alt me-2"></i>Multimedia and
+                      Network Security
+                    </h6>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <div class="card-modern p-3">
+                    <h6 class="gradient-text">
+                      <i class="fas fa-key me-2"></i>Cryptography
+                    </h6>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <div class="card-modern p-3">
+                    <h6 class="gradient-text">
+                      <i class="fas fa-satellite me-2"></i>THz Technologies and
+                      Systems
+                    </h6>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <div class="card-modern p-3">
+                    <h6 class="gradient-text">
+                      <i class="fas fa-satellite-dish me-2"></i>MIMO Antenna
+                    </h6>
+                  </div>
+                </div>
+              </div>
+
+              <div class="alert alert-warning-modern alert-modern mt-4">
+                <i class="fas fa-exclamation-triangle me-2"></i>
+                <p class="mb-0">
+                  <strong>Plagiarism Check:</strong> All submitted papers will
+                  be subjected to a "Plagiarism check" by Turnitin Software.
+                  Papers achieving less than 20% similarity score will only be
+                  sent for formal review. The paper must be submitted only in
+                  PDF format.
+                </p>
+              </div>
+
+              <div class="card-modern p-4 mt-4">
+                <h4 class="gradient-text text-center mb-3">
+                  <i class="fas fa-upload me-2"></i>Manuscript Submission Portal
+                </h4>
+                <p class="text-center mb-3">
+                  Papers to be submitted using <strong>CMT portal</strong>
+                </p>
+                <div class="text-center">
+                  <a
+                    href="https://cmt3.research.microsoft.com/CVCCN2026*"
+                    class="btn btn-gradient-primary btn-lg"
+                    target="_blank"
+                  >
+                    <span
+                      ><i class="fas fa-external-link-alt me-2"></i>Submit Paper
+                      via CMT Portal</span
+                    >
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sidebar Column -->
+          <div class="col-xl-4 col-md-12">
+            <!-- Important Dates Section -->
+            <div class="sidebar-card">
+              <h4 class="sidebar-title">
+                <i class="fas fa-calendar-alt me-2"></i>Important Dates
+              </h4>
+              <div class="table-responsive">
+                <table class="table table-modern">
+                  <tbody>
+                    <tr>
+                      <td><strong>Paper Submission Start:</strong></td>
+                      <td>
+                        <span
+                          style="color: var(--danger-color); font-weight: 600"
+                          >1 April 2025</span
+                        >
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><strong>Paper Submission Deadline:</strong></td>
+                      <td>
+                        <span
+                          style="color: var(--danger-color); font-weight: 600"
+                          >1 June, 2025</span
+                        >
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><strong>Acceptance Notification:</strong></td>
+                      <td>
+                        <span
+                          style="color: var(--danger-color); font-weight: 600"
+                          >15 September 2025</span
+                        >
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><strong>Early bird registration end:</strong></td>
+                      <td>
+                        <span
+                          style="color: var(--danger-color); font-weight: 600"
+                          >15 November 2025</span
+                        >
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><strong>Registration End:</strong></td>
+                      <td>
+                        <span
+                          style="color: var(--danger-color); font-weight: 600"
+                          >30 November 2025</span
+                        >
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><strong>Conference Date:</strong></td>
+                      <td>
+                        <span
+                          style="color: var(--danger-color); font-weight: 600"
+                          >20-21 January 2026</span
+                        >
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Paper Template Download -->
+            <div class="sidebar-card">
+              <h4 class="sidebar-title">
+                <i class="fas fa-file-download me-2"></i>Paper Template
+              </h4>
+              <div class="d-grid gap-3">
+                <a
+                  href="https://www.ieee.org/content/dam/ieee-org/ieee/web/org/conferences/Conference-template-A4.doc"
+                  class="btn btn-gradient-primary"
+                  target="_blank"
+                >
+                  <span
+                    ><i class="fas fa-download me-2"></i>Download IEEE
+                    Template</span
+                  >
+                </a>
+                <a
+                  href="https://cmt3.research.microsoft.com/CVCCN2026*"
+                  class="btn btn-gradient-secondary"
+                  target="_blank"
+                >
+                  <span
+                    ><i class="fas fa-paper-plane me-2"></i>Submit Your
+                    Paper</span
+                  >
+                </a>
+              </div>
+              <div class="alert alert-info-modern alert-modern mt-3">
+                <i class="fas fa-info-circle me-2"></i>
+                <small
+                  >For queries regarding paper submission, contact:
+                  <a
+                    href="mailto:cvccn-2026@nitrr.ac.in"
+                    style="color: var(--accent-color)"
+                    >cvccn-2026@nitrr.ac.in</a
+                  ></small
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Program Schedule Content -->
+      <div id="program-schedule-content" class="page-content">
+        <h2 class="section-title">
+          <i class="fas fa-calendar-week me-3"></i>Program Schedule
+        </h2>
+
+        <div class="row">
+          <div class="col-xl-8 col-md-12">
+            <div class="content-section">
+              <h3 class="content-title">
+                <i class="fas fa-clock me-3"></i>Event Schedule
+              </h3>
+              <p class="content-text">
+                The detailed program schedule for CVCCN 2026 will be available
+                closer to the conference date. The conference will be held from
+                January 20-21, 2026, with a variety of activities including:
+              </p>
+              <div class="row mt-4">
+                <div class="col-md-6 mb-3">
+                  <div class="card-modern p-3">
+                    <h6 class="gradient-text">
+                      <i class="fas fa-microphone-alt me-2"></i>Keynote speeches
+                      by distinguished researchers
+                    </h6>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <div class="card-modern p-3">
+                    <h6 class="gradient-text">
+                      <i class="fas fa-presentation me-2"></i>Technical paper
+                      presentations
+                    </h6>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <div class="card-modern p-3">
+                    <h6 class="gradient-text">
+                      <i class="fas fa-star me-2"></i>Special sessions on
+                      emerging topics
+                    </h6>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <div class="card-modern p-3">
+                    <h6 class="gradient-text">
+                      <i class="fas fa-users me-2"></i>Networking events
+                    </h6>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <div class="card-modern p-3">
+                    <h6 class="gradient-text">
+                      <i class="fas fa-industry me-2"></i>Industry exhibition
+                    </h6>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <div class="card-modern p-3">
+                    <h6 class="gradient-text">
+                      <i class="fas fa-award me-2"></i>Award ceremonies
+                    </h6>
+                  </div>
+                </div>
+              </div>
+
+              <div class="alert alert-info-modern alert-modern mt-4">
+                <i class="fas fa-info-circle me-2"></i>
+                <p class="mb-3">
+                  The complete schedule will be published here once finalized.
+                  Please check back later or
+                  <a
+                    href="mailto:cvccn-2026@nitrr.ac.in"
+                    style="color: var(--accent-color)"
+                    >contact us</a
+                  >
+                  for more information.
+                </p>
+                <div class="text-center">
+                  <a
+                    href="event_schedule2026.pdf"
+                    class="btn btn-gradient-primary"
+                  >
+                    <span
+                      ><i class="fas fa-download me-2"></i>Download Event
+                      Schedule (when available)</span
+                    >
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sidebar Column -->
+          <div class="col-xl-4 col-md-12">
+            <!-- Conference Dates -->
+            <div class="sidebar-card">
+              <h4 class="sidebar-title">
+                <i class="fas fa-calendar-day me-2"></i>Conference Dates
+              </h4>
+              <div class="card-modern p-4 text-center">
+                <h5 class="gradient-text">
+                  <i class="fas fa-calendar-alt me-2"></i>January 20-21, 2026
+                </h5>
+                <p class="mb-0 text-muted">
+                  National Institute of Technology Raipur
+                </p>
+              </div>
+
+              <div class="table-responsive mt-3">
+                <table class="table table-modern">
+                  <thead>
+                    <tr>
+                      <th colspan="2" class="text-center">Key Dates</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>Paper submission deadline:</strong></td>
+                      <td>1<sup>st</sup> June 2025</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Acceptance notification:</strong></td>
+                      <td>15<sup>th</sup> September 2025</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Early bird registration end:</strong></td>
+                      <td>15<sup>th</sup> November 2025</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Registration End:</strong></td>
+                      <td>30<sup>th</sup> November 2025</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Plan Travel Content -->
+      <div id="plan-travel-content" class="page-content">
+        <h2 class="section-title">
+          <i class="fas fa-plane me-3"></i>Plan Your Travel
+        </h2>
+
+        <div class="row">
+          <div class="col-xl-8 col-md-12">
+            <!-- About India -->
+            <div class="content-section">
+              <h3 class="content-title">
+                <i class="fas fa-flag me-3"></i>About India
+              </h3>
+              <blockquote
+                class="blockquote text-center p-4"
+                style="
+                  background: linear-gradient(
+                    135deg,
+                    rgba(102, 126, 234, 0.1) 0%,
+                    rgba(118, 75, 162, 0.1) 100%
+                  );
+                  border-radius: var(--radius-md);
+                  border-left: 4px solid var(--primary-color);
+                "
+              >
+                <p
+                  class="mb-3"
+                  style="color: var(--primary-color); font-style: italic"
+                >
+                  "If there is one place on the face of earth where all the
+                  dreams of living men have found a home from the very earliest
+                  days when men began the dream of existence, it is India."
+                </p>
+                <footer class="blockquote-footer">Romain Rolland</footer>
+              </blockquote>
+
+              <h4 class="gradient-text mt-4">
+                <i class="fas fa-heart me-2"></i>MY INDIA IS MY PRIDE
+              </h4>
+              <p class="content-text">
+                India is one of the oldest civilizations in the world with a
+                kaleidoscopic variety and rich cultural heritage, for more than
+                <strong>5000 years</strong>. It has reached to a point of
+                all-round socio-economic stability during the last
+                <strong>65 years</strong> of its Independence. India, a union of
+                states, is a Sovereign, Secular, and Democratic Republic with a
+                Parliamentary system of Governance.
+              </p>
+
+              <p class="content-text">
+                There are <strong>28 states and 8 Union territories</strong> in
+                the country. From the largest to the smallest, each State/UT of
+                India is unique in its demography, history and culture, dress,
+                festivals, language etc.
+              </p>
+
+              <h4 class="gradient-text mt-4">
+                <i class="fas fa-info-circle me-2"></i>Facts About India
+              </h4>
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <div class="card-modern p-3">
+                    <h6 class="gradient-text">
+                      <i class="fas fa-stethoscope me-2"></i>Ancient Medicine
+                    </h6>
+                    <small class="text-muted"
+                      >Ayurveda is the earliest school of medicine known to
+                      mankind. Sushruta is regarded as the Father of
+                      Surgery.</small
+                    >
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <div class="card-modern p-3">
+                    <h6 class="gradient-text">
+                      <i class="fas fa-calculator me-2"></i>Mathematics
+                    </h6>
+                    <small class="text-muted"
+                      >The value of "π" was first calculated by the Indian
+                      Mathematician Budhayana in the 6th century.</small
+                    >
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <div class="card-modern p-3">
+                    <h6 class="gradient-text">
+                      <i class="fas fa-bridge me-2"></i>Engineering Marvel
+                    </h6>
+                    <small class="text-muted"
+                      >The Baily Bridge is the highest bridge in the world,
+                      built by the Indian Army in August 1982.</small
+                    >
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <div class="card-modern p-3">
+                    <h6 class="gradient-text">
+                      <i class="fas fa-om me-2"></i>Yoga Origins
+                    </h6>
+                    <small class="text-muted"
+                      >Yoga has its origins in India and has existed for over
+                      5,000 years.</small
+                    >
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <div class="card-modern p-3">
+                    <h6 class="gradient-text">
+                      <i class="fas fa-rocket me-2"></i>Space Achievement
+                    </h6>
+                    <small class="text-muted"
+                      >Mangalyaan, India's Mars Orbiter, was made possible at
+                      the cheapest cost worldwide.</small
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- About Raipur -->
+            <div class="content-section">
+              <h3 class="content-title">
+                <i class="fas fa-city me-3"></i>About Raipur
+              </h3>
+              <p class="content-text">
+                Raipur is the capital and largest city of the state of
+                Chhattisgarh. Raipur is an emerging global hub and has witnessed
+                exponential growth over the past years. It contains a diverse
+                population of about a million and spans across an area of 180 sq
+                km. It holds 7th position in the Ease of Living Index 2018 by
+                Union Ministry of Housing and Urban Affairs.
+              </p>
+
+              <p class="content-text">
+                The city is located near the centre of a large plain, wherein
+                hundreds of varieties of rice are grown, by virtue of which
+                Chhattisgarh is the 'Rice bowl of India'. Raipur being
+                geographically located at the centre of Chhattisgarh was chosen
+                to be its capital on 1st November 2000.
+              </p>
+
+              <p class="content-text">
+                The slogan of the city is "Mor Raipur" which means "My Raipur"
+                in Chhattisgarhi. The city is also developing as a part of the
+                Smart Cities initiative. Raipur also occurs to be the
+                educational hub of Chhattisgarh due to the presence of
+                innumerable educational institutions of importance.
+              </p>
+            </div>
+
+            <!-- Travelling to Raipur -->
+            <div class="content-section">
+              <h3 class="content-title">
+                <i class="fas fa-route me-3"></i>Travelling to Raipur
+              </h3>
+
+              <div class="row">
+                <div class="col-md-6 mb-4">
+                  <div class="card-modern p-4">
+                    <h5 class="gradient-text">
+                      <i class="fas fa-plane me-2"></i>By Air
+                    </h5>
+                    <p class="mb-0">
+                      Swami Vivekananda Airport (RPR) is approximately 15 km
+                      from the city center. Direct flights are available from
+                      major cities like Delhi, Mumbai, Bangalore, Hyderabad, and
+                      Kolkata.
+                    </p>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                  <div class="card-modern p-4">
+                    <h5 class="gradient-text">
+                      <i class="fas fa-train me-2"></i>By Train
+                    </h5>
+                    <p class="mb-0">
+                      Raipur Junction Railway Station is a major railway station
+                      on the Howrah-Nagpur-Mumbai line and is well-connected to
+                      all major cities in India.
+                    </p>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                  <div class="card-modern p-4">
+                    <h5 class="gradient-text">
+                      <i class="fas fa-bus me-2"></i>By Road
+                    </h5>
+                    <p class="mb-0">
+                      Raipur has excellent road connectivity through national
+                      highways. Regular bus services connect Raipur to nearby
+                      cities and states.
+                    </p>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                  <div class="card-modern p-4">
+                    <h5 class="gradient-text">
+                      <i class="fas fa-car me-2"></i>Local Transport
+                    </h5>
+                    <p class="mb-0">
+                      Auto rickshaws, taxis, city buses, and rental services are
+                      available for local transportation within Raipur.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="alert alert-info-modern alert-modern mt-4">
+                <i class="fas fa-info-circle me-2"></i>
+                <p class="mb-0">
+                  For international attendees, the nearest international
+                  airports are in Delhi, Mumbai, and Hyderabad, from where
+                  connecting flights to Raipur are available.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sidebar Column -->
+          <div class="col-xl-4 col-md-12">
+            <!-- India Travel Info -->
+            <div class="sidebar-card">
+              <h4 class="sidebar-title">
+                <i class="fas fa-info-circle me-2"></i>India Travel Info
+              </h4>
+
+              <div class="card-modern p-3 mb-3">
+                <h6 class="gradient-text mb-2">
+                  <i class="fas fa-passport me-2"></i>Visa Requirements
+                </h6>
+                <small class="text-muted"
+                  >Check visa requirements for international visitors</small
+                >
+              </div>
+
+              <div class="card-modern p-3 mb-3">
+                <h6 class="gradient-text mb-2">
+                  <i class="fas fa-plane me-2"></i>International Airports
+                </h6>
+                <small class="text-muted"
+                  >Major airports: Delhi, Mumbai, Bangalore, Chennai</small
+                >
+              </div>
+
+              <div class="card-modern p-3 mb-3">
+                <h6 class="gradient-text mb-2">
+                  <i class="fas fa-plug me-2"></i>Power Outlets
+                </h6>
+                <small class="text-muted"
+                  >230V, 50Hz (Type C, D, and M plugs)</small
+                >
+              </div>
+
+              <div class="card-modern p-3 mb-3">
+                <h6 class="gradient-text mb-2">
+                  <i class="fas fa-coins me-2"></i>Currency
+                </h6>
+                <small class="text-muted">Indian Rupee (INR)</small>
+              </div>
+
+              <div class="card-modern p-3 mb-3">
+                <h6 class="gradient-text mb-2">
+                  <i class="fas fa-language me-2"></i>Languages
+                </h6>
+                <small class="text-muted"
+                  >Hindi, English, and many regional languages</small
+                >
+              </div>
+            </div>
+
+            <!-- Travel Tips -->
+            <div class="sidebar-card">
+              <h4 class="sidebar-title">
+                <i class="fas fa-lightbulb me-2"></i>Travel Tips
+              </h4>
+
+              <div class="card-modern p-3 mb-3">
+                <h6 class="gradient-text">
+                  <i class="fas fa-taxi me-2"></i>Airport Transfer
+                </h6>
+                <small class="text-muted"
+                  >Pre-paid taxi services available. Fare to NIT Raipur:
+                  ₹400-500</small
+                >
+              </div>
+
+              <div class="card-modern p-3 mb-3">
+                <h6 class="gradient-text">
+                  <i class="fas fa-thermometer-half me-2"></i>Weather in January
+                </h6>
+                <small class="text-muted"
+                  >Pleasant weather, 10°C to 25°C. Light woolens
+                  recommended</small
+                >
+              </div>
+
+              <div class="card-modern p-3 mb-3">
+                <h6 class="gradient-text">
+                  <i class="fas fa-phone me-2"></i>Local Contact
+                </h6>
+                <small class="text-muted"
+                  >For travel assistance:
+                  <a href="mailto:cvccn-2026@nitrr.ac.in"
+                    >cvccn-2026@nitrr.ac.in</a
+                  ></small
+                >
+              </div>
+            </div>
+
+            <!-- Distance Chart -->
+            <div class="sidebar-card">
+              <h4 class="sidebar-title">
+                <i class="fas fa-map-marked-alt me-2"></i>Distance Chart
+              </h4>
+              <div class="table-responsive">
+                <table class="table table-modern">
+                  <thead>
+                    <tr>
+                      <th>From</th>
+                      <th>To NIT Raipur</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><i class="fas fa-plane me-2"></i>Airport</td>
+                      <td>15 km</td>
+                    </tr>
+                    <tr>
+                      <td><i class="fas fa-train me-2"></i>Railway Station</td>
+                      <td>5 km</td>
+                    </tr>
+                    <tr>
+                      <td><i class="fas fa-bus me-2"></i>Bus Stand</td>
+                      <td>7 km</td>
+                    </tr>
+                    <tr>
+                      <td><i class="fas fa-city me-2"></i>City Center</td>
+                      <td>8 km</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tourist Attraction Content -->
+      <div id="tourist-attraction-content" class="page-content">
+        <h2 class="section-title">
+          <i class="fas fa-camera me-3"></i>Tourist Attractions
+        </h2>
+
+        <div class="content-section">
+          <h3 class="content-title">
+            <i class="fas fa-map-marked-alt me-3"></i>Tourist Attractions in
+            Chhattisgarh
+          </h3>
+          <p class="content-text">
+            Chhattisgarh, known as the "Rice Bowl of India", is a state rich in
+            natural beauty, cultural heritage, and historical significance. The
+            state offers a unique blend of tribal culture, ancient temples, and
+            breathtaking natural landscapes.
+          </p>
+
+          <div class="row mt-4">
+            <!-- Popular Tourist Spots -->
+            <div class="col-md-6 mb-4">
+              <div class="card-modern p-4 h-100">
+                <h5 class="gradient-text">
+                  <i class="fas fa-water me-2"></i>Chitrakote Waterfalls
+                </h5>
+                <p class="mb-0">
+                  Known as the "Niagara Falls of India", this majestic waterfall
+                  is located in Bastar district, about 300km from Raipur. The
+                  waterfall is at its best during the monsoon season.
+                </p>
+              </div>
+            </div>
+
+            <div class="col-md-6 mb-4">
+              <div class="card-modern p-4 h-100">
+                <h5 class="gradient-text">
+                  <i class="fas fa-water me-2"></i>Tirathgarh Waterfalls
+                </h5>
+                <p class="mb-0">
+                  A beautiful waterfall in Kanger Valley National Park, about
+                  250km from Raipur. The waterfall cascades down in multiple
+                  tiers, creating a spectacular view.
+                </p>
+              </div>
+            </div>
+
+            <div class="col-md-6 mb-4">
+              <div class="card-modern p-4 h-100">
+                <h5 class="gradient-text">
+                  <i class="fas fa-temple me-2"></i>Bhoramdeo Temple
+                </h5>
+                <p class="mb-0">
+                  Often called the "Khajuraho of Chhattisgarh", this
+                  11th-century temple complex is located in Kawardha district,
+                  about 120km from Raipur.
+                </p>
+              </div>
+            </div>
+
+            <div class="col-md-6 mb-4">
+              <div class="card-modern p-4 h-100">
+                <h5 class="gradient-text">
+                  <i class="fas fa-monument me-2"></i>Sirpur
+                </h5>
+                <p class="mb-0">
+                  An ancient Buddhist archaeological site with temples and
+                  monasteries, about 85km from Raipur. The site dates back to
+                  the 5th-8th century AD.
+                </p>
+              </div>
+            </div>
+
+            <div class="col-md-6 mb-4">
+              <div class="card-modern p-4 h-100">
+                <h5 class="gradient-text">
+                  <i class="fas fa-tree me-2"></i>Barnawapara Wildlife Sanctuary
+                </h5>
+                <p class="mb-0">
+                  Home to various wildlife species including tigers and
+                  leopards, about 100km from Raipur. The sanctuary is known for
+                  its rich biodiversity.
+                </p>
+              </div>
+            </div>
+
+            <div class="col-md-6 mb-4">
+              <div class="card-modern p-4 h-100">
+                <h5 class="gradient-text">
+                  <i class="fas fa-landmark me-2"></i>Mahant Ghasidas Memorial
+                  Museum
+                </h5>
+                <p class="mb-0">
+                  One of the oldest museums in Chhattisgarh, showcasing tribal
+                  culture and artifacts. The museum provides insights into the
+                  rich cultural heritage of the region.
+                </p>
+              </div>
+            </div>
+
+            <div class="col-md-6 mb-4">
+              <div class="card-modern p-4 h-100">
+                <h5 class="gradient-text">
+                  <i class="fas fa-paw me-2"></i>Nandan Van Zoo & Safari
+                </h5>
+                <p class="mb-0">
+                  A modern zoo and safari park in Naya Raipur, featuring various
+                  animal species and offering an excellent wildlife experience.
+                </p>
+              </div>
+            </div>
+
+            <div class="col-md-6 mb-4">
+              <div class="card-modern p-4 h-100">
+                <h5 class="gradient-text">
+                  <i class="fas fa-water me-2"></i>Dhamtari
+                </h5>
+                <p class="mb-0">
+                  Known for its beautiful landscapes and Gangrel Dam, about 60km
+                  from Raipur. A perfect destination for nature lovers.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer-modern">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 mb-4">
+            <h5><i class="fas fa-university me-2"></i>CVCCN 2026</h5>
+            <p class="text-light">
+              International Conference on Computer Vision, Communication,
+              Computing and Nanoelectronics
+            </p>
+            <p class="text-light">National Institute of Technology Raipur</p>
+          </div>
+          <div class="col-lg-4 mb-4">
+            <h5><i class="fas fa-link me-2"></i>Quick Links</h5>
+            <ul class="list-unstyled">
+              <li>
+                <a href="#home-content" onclick="showSection('home-content')"
+                  >Home</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#call-for-papers-content"
+                  onclick="showSection('call-for-papers-content')"
+                  >Call for Papers</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#registration-content"
+                  onclick="showSection('registration-content')"
+                  >Registration</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#contact-us-content"
+                  onclick="showSection('contact-us-content')"
+                  >Contact</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="col-lg-4 mb-4">
+            <h5><i class="fas fa-envelope me-2"></i>Contact Info</h5>
+            <p class="text-light">
+              <i class="fas fa-envelope me-2"></i>
+              <a href="mailto:cvccn-2026@nitrr.ac.in">cvccn-2026@nitrr.ac.in</a>
+            </p>
+            <p class="text-light">
+              <i class="fas fa-map-marker-alt me-2"></i>
+              NIT Raipur, Chhattisgarh, India
+            </p>
+          </div>
+        </div>
+        <hr class="border-light" />
+        <div class="row">
+          <div class="col-12 text-center">
+            <p class="mb-0">
+              &copy; 2025 CVCCN 2026. All rights reserved. | Developed by Rahul
+              Singh and Nishant Kumar
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scrollToTop" onclick="scrollToTop()">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      // Show/Hide sections
+      function showSection(sectionId) {
+        // Hide all sections
+        const sections = document.querySelectorAll(".page-content");
+        sections.forEach((section) => {
+          section.classList.remove("active");
+        });
+
+        // Show selected section
+        const targetSection = document.getElementById(sectionId);
+        if (targetSection) {
+          targetSection.classList.add("active");
+          targetSection.classList.add("fade-in");
+
+          // Remove fade-in class after animation
+          setTimeout(() => {
+            targetSection.classList.remove("fade-in");
+          }, 600);
+
+          // Scroll to the section content with offset for navbar
+          setTimeout(() => {
+            const navbarHeight =
+              document.getElementById("mainNavbar").offsetHeight;
+            const sectionTop = targetSection.offsetTop - navbarHeight - 20;
+            window.scrollTo({
+              top: Math.max(0, sectionTop),
+              behavior: "smooth",
+            });
+          }, 100);
+        }
+
+        // Update navbar
+        updateNavbar();
+      }
+
+      // Update navbar on scroll
+      function updateNavbar() {
+        const navbar = document.getElementById("mainNavbar");
+        if (window.scrollY > 50) {
+          navbar.classList.add("navbar-scrolled");
+        } else {
+          navbar.classList.remove("navbar-scrolled");
+        }
+      }
+
+      // Scroll to top button
+      function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      // Show/hide scroll to top button
+      function toggleScrollButton() {
+        const scrollBtn = document.getElementById("scrollToTop");
+        if (window.scrollY > 300) {
+          scrollBtn.classList.add("visible");
+        } else {
+          scrollBtn.classList.remove("visible");
+        }
+      }
+
+      // Event listeners
+      window.addEventListener("scroll", () => {
+        updateNavbar();
+        toggleScrollButton();
+      });
+
+      // Countdown Timer Function
+      function updateCountdown() {
+        // Conference date: January 20, 2026 at 9:00 AM IST
+        const conferenceDate = new Date("January 20, 2026 09:00:00 GMT+0530");
+        const now = new Date();
+        const difference = conferenceDate - now;
+
+        if (difference > 0) {
+          const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+          const hours = Math.floor(
+            (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+          );
+          const minutes = Math.floor(
+            (difference % (1000 * 60 * 60)) / (1000 * 60),
+          );
+          const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+          document.getElementById("countdown-days").textContent = days;
+          document.getElementById("countdown-hours").textContent = hours
+            .toString()
+            .padStart(2, "0");
+          document.getElementById("countdown-minutes").textContent = minutes
+            .toString()
+            .padStart(2, "0");
+          document.getElementById("countdown-seconds").textContent = seconds
+            .toString()
+            .padStart(2, "0");
+        } else {
+          // Conference has started or ended
+          document.getElementById("countdown-days").textContent = "0";
+          document.getElementById("countdown-hours").textContent = "00";
+          document.getElementById("countdown-minutes").textContent = "00";
+          document.getElementById("countdown-seconds").textContent = "00";
+
+          // Show conference is live message
+          const countdownTitle = document.querySelector(".sidebar-card h4");
+          if (
+            countdownTitle &&
+            countdownTitle.textContent.includes("Countdown to Event")
+          ) {
+            countdownTitle.innerHTML =
+              '<i class="fas fa-broadcast-tower me-2"></i>Conference Live!';
+          }
+        }
+      }
+
+      // Initialize
+      document.addEventListener("DOMContentLoaded", function () {
+        // Show home section by default
+        showSection("home-content");
+
+        // Initialize navbar
+        updateNavbar();
+
+        // Start countdown timer
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // Handle navigation clicks
+        document.querySelectorAll(".nav-link-modern").forEach((link) => {
+          link.addEventListener("click", function (e) {
+            e.preventDefault();
+            const href = this.getAttribute("href");
+            if (href && href.startsWith("#")) {
+              showSection(href.substring(1));
+            }
+          });
+        });
+
+        // Navbar collapse on mobile after click
+        document.querySelectorAll(".nav-link-modern").forEach((link) => {
+          link.addEventListener("click", () => {
+            const navbarCollapse = document.querySelector(".navbar-collapse");
+            if (navbarCollapse.classList.contains("show")) {
+              const bsCollapse = new bootstrap.Collapse(navbarCollapse);
+              bsCollapse.hide();
+            }
+          });
+        });
+      });
+
+      // Smooth scrolling for internal links
+      document.addEventListener("click", function (e) {
+        if (e.target.matches('a[href^="#"]')) {
+          e.preventDefault();
+          const targetId = e.target.getAttribute("href").substring(1);
+          if (targetId) {
+            showSection(targetId);
+          }
+        }
+      });
+
+      // Add loading animation to buttons
+      document
+        .querySelectorAll(".btn-gradient-primary, .btn-gradient-secondary")
+        .forEach((btn) => {
+          btn.addEventListener("click", function () {
+            if (!this.href || this.href === "#") return;
+
+            this.style.transform = "scale(0.95)";
+            setTimeout(() => {
+              this.style.transform = "";
+            }, 150);
+          });
+        });
+
+      // Intersection Observer for animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("fade-in");
+          }
+        });
+      }, observerOptions);
+
+      // Observe elements for animation
+      document.addEventListener("DOMContentLoaded", function () {
+        document
+          .querySelectorAll(".content-section, .card-modern, .speaker-card")
+          .forEach((el) => {
+            observer.observe(el);
+          });
+      });
+    </script>
+  </body>
+</html>
